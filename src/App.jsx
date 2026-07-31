@@ -1,121 +1,69 @@
 import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from './assets/vite.svg'
-import heroImg from './assets/hero.png'
+import Navbar from './components/Navbar'
+import Hero from './components/Hero'
+import Clients from './components/Clients'
+import Projects from './components/Projects'
+import Contact from './components/Contact'
+import Footer from './components/Footer'
 import './App.css'
 
+const pages = [
+  { id: 'home', label: 'Accueil', number: '01' },
+  { id: 'about', label: 'Profil', number: '02' },
+  { id: 'projects', label: 'Projets', number: '03' },
+  { id: 'contact', label: 'Contact', number: '04' },
+]
+
 function App() {
-  const [count, setCount] = useState(0)
+  const [activePage, setActivePage] = useState(0)
+
+  const goToPage = (index) => {
+    setActivePage((index + pages.length) % pages.length)
+  }
+
+  const content = [
+    <Hero key="home" onExplore={() => goToPage(2)} />,
+    <Clients key="about" />,
+    <Projects key="projects" />,
+    <Contact key="contact" />,
+  ]
 
   return (
-    <>
-      <section id="center">
-        <div className="hero">
-          <img src={heroImg} className="base" width="170" height="179" alt="" />
-          <img src={reactLogo} className="framework" alt="React logo" />
-          <img src={viteLogo} className="vite" alt="Vite logo" />
-        </div>
-        <div>
-          <h1>Get started</h1>
-          <p>
-            Edit <code>src/App.jsx</code> and save to test <code>HMR</code>
-          </p>
-        </div>
-        <button
-          type="button"
-          className="counter"
-          onClick={() => setCount((count) => count + 1)}
-        >
-          Count is {count}
-        </button>
-      </section>
+    <main className="portfolio-shell">
+      <div className="ambient ambient-one" />
+      <div className="ambient ambient-two" />
 
-      <div className="ticks"></div>
-
-      <section id="next-steps">
-        <div id="docs">
-          <svg className="icon" role="presentation" aria-hidden="true">
-            <use href="/icons.svg#documentation-icon"></use>
-          </svg>
-          <h2>Documentation</h2>
-          <p>Your questions, answered</p>
-          <ul>
-            <li>
-              <a href="https://vite.dev/" target="_blank">
-                <img className="logo" src={viteLogo} alt="" />
-                Explore Vite
-              </a>
-            </li>
-            <li>
-              <a href="https://react.dev/" target="_blank">
-                <img className="button-icon" src={reactLogo} alt="" />
-                Learn more
-              </a>
-            </li>
-          </ul>
+      <header className="topbar">
+        <a className="brand" href="#home" onClick={() => goToPage(0)}>
+          <span>FE</span>
+          <strong>Fatima Ezzahra.</strong>
+        </a>
+        <div className="topbar-note">
+          <span className="status-dot" />
+          Disponible pour de nouveaux projets
         </div>
-        <div id="social">
-          <svg className="icon" role="presentation" aria-hidden="true">
-            <use href="/icons.svg#social-icon"></use>
-          </svg>
-          <h2>Connect with us</h2>
-          <p>Join the Vite community</p>
-          <ul>
-            <li>
-              <a href="https://github.com/vitejs/vite" target="_blank">
-                <svg
-                  className="button-icon"
-                  role="presentation"
-                  aria-hidden="true"
-                >
-                  <use href="/icons.svg#github-icon"></use>
-                </svg>
-                GitHub
-              </a>
-            </li>
-            <li>
-              <a href="https://chat.vite.dev/" target="_blank">
-                <svg
-                  className="button-icon"
-                  role="presentation"
-                  aria-hidden="true"
-                >
-                  <use href="/icons.svg#discord-icon"></use>
-                </svg>
-                Discord
-              </a>
-            </li>
-            <li>
-              <a href="https://x.com/vite_js" target="_blank">
-                <svg
-                  className="button-icon"
-                  role="presentation"
-                  aria-hidden="true"
-                >
-                  <use href="/icons.svg#x-icon"></use>
-                </svg>
-                X.com
-              </a>
-            </li>
-            <li>
-              <a href="https://bsky.app/profile/vite.dev" target="_blank">
-                <svg
-                  className="button-icon"
-                  role="presentation"
-                  aria-hidden="true"
-                >
-                  <use href="/icons.svg#bluesky-icon"></use>
-                </svg>
-                Bluesky
-              </a>
-            </li>
-          </ul>
-        </div>
-      </section>
+      </header>
 
-      <div className="ticks"></div>
-      <section id="spacer"></section>
-    </>
+      <div className="experience">
+        <section className="page-stage" aria-live="polite">
+          <div className="page-meta">
+            <span>{pages[activePage].number}</span>
+            <span className="meta-line" />
+            <span>{pages[activePage].label}</span>
+          </div>
+          <div key={activePage} className="page-transition">
+            {content[activePage]}
+          </div>
+        </section>
+      </div>
+
+      <Footer activePage={activePage} total={pages.length} />
+      <Navbar
+        pages={pages}
+        activePage={activePage}
+        onNavigate={goToPage}
+      />
+    </main>
   )
 }
 
