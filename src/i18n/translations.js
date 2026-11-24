@@ -30,13 +30,13 @@ export const copy = {
     subject:'Objet',
     message:'Votre message',
     send:'Envoyer le message',
-    sent:'Merci, votre message est prêt. Configurez un service de formulaire pour recevoir les envois.',
+    sent:'WhatsApp s’est ouvert avec votre message. Appuyez sur Envoyer pour le transmettre.',
     required:'Veuillez remplir tous les champs.',
     mailto:'Écrire un e-mail',
     linkedin:'LinkedIn',
     githubLink:'GitHub',
     footer:'Conçu avec soin.',
-    formNote:'Le formulaire ouvre votre application e-mail.' },
+    formNote:'Le formulaire ouvre WhatsApp avec votre message prérempli.' },
  en: {
     nav:['Home','About','Skills','Projects','Journey','Contact'],
     eyebrow:'Portfolio · 2025—26',
@@ -68,12 +68,12 @@ export const copy = {
     subject:'Subject',
     message:'Your message',
     send:'Send message',
-    sent:'Thanks, your message is ready. Connect a form service to receive submissions.',
+    sent:'WhatsApp opened with your message. Tap Send to deliver it.',
     required:'Please complete every field.',
     mailto:'Email me',
     linkedin:'LinkedIn',
     githubLink:'GitHub',
     footer:'Made with care.',
-    formNote:'The form opens your email application.'
+    formNote:'The form opens WhatsApp with your message prefilled.'
    },
 }

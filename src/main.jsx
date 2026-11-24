@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { createRoot } from 'react-dom/client';
 import { motion, useReducedMotion } from 'framer-motion';
-import { ArrowDown, ArrowUpRight, Menu, X, Sun, Moon, Code2, Github, Linkedin, Mail, ExternalLink } from 'lucide-react';
+import { ArrowDown, ArrowUpRight, Menu, X, Sun, Moon, Code2, Github, Linkedin, Mail, MessageCircle, ExternalLink } from 'lucide-react';
 import { copy } from './i18n/translations';
 import { projects, skills, timeline } from './data/portfolio';
 import portrait from './assets/fatima-portrait.png';
@@ -100,9 +100,16 @@ function App() {
     const changeLang = e => { setLang(e.target.value); localStorage.setItem('portfolio-language', e.target.value) };
     const toggleTheme = () => { setDark(v => { localStorage.setItem('portfolio-theme', !v ? 'dark' : 'light'); return !v }) };
     const reveal = { initial: { opacity: 0, y: reduced ? 0 : 22 }, whileInView: { opacity: 1, y: 0 }, viewport: { once: true, amount: .16 }, transition: { duration: reduced ? 0 : .65, ease: [.2, .7, .2, 1] } };
-    const submit = e => { e.preventDefault();
-    const f = new FormData(e.currentTarget); if ([...f.values()].some(x => !String(x).trim())) { setError(true); return } setError(false); setSent(true);
-    const body = encodeURIComponent(`${f.get('message')}\n\n— ${f.get('name')} (${f.get('email')})`); window.location.href = `mailto:fatimaezzahrabel777@gmail.com?subject=${encodeURIComponent(f.get('subject'))}&body=${body}` };
+    const submit = e => {
+        e.preventDefault();
+        const f = new FormData(e.currentTarget);
+        if ([...f.values()].some(value => !String(value).trim())) { setError(true); return; }
+        setError(false);
+        setSent(true);
+        const message = `Bonjour Fatima,\n\n${f.get('subject')}\n${f.get('message')}\n\n— ${f.get('name')} (${f.get('email')})`;
+        const whatsappUrl = `https://wa.me/212633697284?text=${encodeURIComponent(message)}`;
+        window.open(whatsappUrl, '_blank', 'noopener,noreferrer');
+    };
 
     return <div className={dark ? 'app dark' : 'app'} dir="ltr" lang={lang}>
         <header className="nav-wrap"><nav className="nav container" aria-label="Main navigation"><a className="brand" href="#home" aria-label="Fatima Ezzahra Belissaoui home"><span className="brand-mark">F<span>.</span></span><span className="brand-name">Fatima Ezzahra<br /><small>Belissaoui</small></span></a><div className={`nav-links ${open ? 'is-open' : ''}`} id="primary-navigation">{t.nav.map((x, i) => <a href={['#home', '#about', '#skills', '#projects', '#experience', '#contact'][i]} onClick={() => setOpen(false)} key={x}>{x}</a>)}</div><div className="nav-actions"><label className="sr-only" htmlFor="language">Language</label><select id="language" className="language" value={lang} onChange={changeLang} aria-label="Language"><option value="fr">FR</option><option value="en">EN</option></select><button className="icon-button" onClick={toggleTheme} aria-label={dark ? 'Switch to light theme' : 'Switch to dark theme'}>{dark ? <Sun size={17} /> : <Moon size={17} />}</button><button className="icon-button menu-toggle" onClick={() => setOpen(!open)} aria-label={open ? 'Close menu' : 'Open menu'} aria-expanded={open} aria-controls="primary-navigation">{open ? <X size={18} /> : <Menu size={18} />}</button></div></nav></header>
@@ -133,7 +140,7 @@ function App() {
                 </div>
             </section>
             <section className="section journey-section" id="experience"><div className="container"><motion.div className="section-label" {...reveal}>{t.timelineNo}</motion.div><motion.h2 className="section-heading" {...reveal}>{t.timelineTitle}</motion.h2><div className="timeline">{timeline.map((item, i) => <motion.article className="timeline-item" key={i} {...reveal}><span className="timeline-dot" /><span className="timeline-period">{item.period[lang]}</span><div><h3>{item.title[lang]}</h3><p>{item.detail[lang]}</p></div></motion.article>)}</div></div></section>
-            <section className="section container contact-section" id="contact"><div className="contact-intro"><motion.div className="section-label" {...reveal}>{t.contactNo}</motion.div><motion.h2 {...reveal}>{t.contactTitle}</motion.h2><motion.p {...reveal}>{t.contactIntro}</motion.p><motion.div className="social-links" {...reveal}><a href="mailto:fatimaezzahrabel777@gmail.com"><Mail size={16} />{t.mailto}<ArrowUpRight size={14} /></a><a href="https://www.linkedin.com/in/fatimaezzahra-belissaoui-a64668367" target="_blank" rel="noreferrer"><Linkedin size={16} />{t.linkedin}<ArrowUpRight size={14} /></a><a href="https://github.com/fatimaezzahra777" target="_blank" rel="noreferrer"><Github size={16} />{t.githubLink}<ArrowUpRight size={14} /></a></motion.div></div><motion.form className="contact-form" onSubmit={submit} {...reveal}><div className="form-row"><label>{t.name}<input name="name" autoComplete="name" /></label><label>{t.email}<input type="email" name="email" autoComplete="email" /></label></div><label>{t.subject}<input name="subject" /></label><label>{t.message}<textarea name="message" rows="4" /></label><p className="form-note">{t.formNote}</p>{error && <p className="form-feedback error" role="alert">{t.required}</p>}{sent && <p className="form-feedback" role="status">{t.sent}</p>}<button className="button button-dark submit-button" type="submit">{t.send}<ArrowUpRight size={16} /></button></motion.form></section>
+            <section className="section container contact-section" id="contact"><div className="contact-intro"><motion.div className="section-label" {...reveal}>{t.contactNo}</motion.div><motion.h2 {...reveal}>{t.contactTitle}</motion.h2><motion.p {...reveal}>{t.contactIntro}</motion.p><motion.div className="social-links" {...reveal}><a href="mailto:fatimaezzahrabel777@gmail.com"><Mail size={16} />{t.mailto}<ArrowUpRight size={14} /></a><a href="https://wa.me/212633697284" target="_blank" rel="noreferrer"><MessageCircle size={16} />WhatsApp<ArrowUpRight size={14} /></a><a href="https://www.linkedin.com/in/fatimaezzahra-belissaoui-a64668367" target="_blank" rel="noreferrer"><Linkedin size={16} />{t.linkedin}<ArrowUpRight size={14} /></a><a href="https://github.com/fatimaezzahra777" target="_blank" rel="noreferrer"><Github size={16} />{t.githubLink}<ArrowUpRight size={14} /></a></motion.div></div><motion.form className="contact-form" onSubmit={submit} {...reveal}><div className="form-row"><label>{t.name}<input name="name" autoComplete="name" /></label><label>{t.email}<input type="email" name="email" autoComplete="email" /></label></div><label>{t.subject}<input name="subject" /></label><label>{t.message}<textarea name="message" rows="4" /></label><p className="form-note">{t.formNote}</p>{error && <p className="form-feedback error" role="alert">{t.required}</p>}{sent && <p className="form-feedback" role="status">{t.sent}</p>}<button className="button button-dark submit-button" type="submit">{t.send}<ArrowUpRight size={16} /></button></motion.form></section>
         </main><footer className="footer"><div className="container footer-inner"><a className="brand" href="#home"><span className="brand-mark">F<span>.</span></span><span className="brand-name">Fatima Ezzahra<br /><small>Belissaoui</small></span></a><span>© {new Date().getFullYear()} Fatima Ezzahra Belissaoui</span><span>{t.footer}</span><a className="back-top" href="#home" aria-label="Back to top"><ArrowUpRight size={17} /></a></div></footer>
     </div>
 }
