@@ -23,9 +23,9 @@ export const projects = [
 ];
 
 export const timeline = [
+  { period: { fr: '2025–2027', en: '2025–2027' }, title: { fr: 'Développement Web · YouCode (UM6P)', en: 'Web Development · YouCode (UM6P)' }, detail: { fr: 'Safi', en: 'Safi' } },
   { period: { fr: 'Mai – juillet 2026', en: 'May – July 2026' }, title: { fr: 'Stage en développement web · Soft7Art', en: 'Web development internship · Soft7Art' }, detail: { fr: 'Casablanca Maarif · Contribution au développement de Daily_Ops, application web de gestion des opérations.', en: 'Casablanca Maarif · Contributed to Daily_Ops, a web application for operations management.' }, technologies: 'HTML · CSS · JavaScript · MySQL · PHP · Laravel · Blade' },
   { period: { fr: 'Mars 2025', en: 'March 2025' }, title: { fr: 'Stage en développement web · Ebru_Immo', en: 'Web development internship · Ebru_Immo' }, detail: { fr: 'Rabat Agdal · Mise à jour de contenu, ajustements de mise en page et amélioration de fonctionnalités existantes.', en: 'Rabat Agdal · Updated content, refined layouts and improved existing features.' }, technologies: 'HTML · CSS · JavaScript' },
-  { period: { fr: '2025–2027', en: '2025–2027' }, title: { fr: 'Développement Web · YouCode (UM6P)', en: 'Web Development · YouCode (UM6P)' }, detail: { fr: 'Safi', en: 'Safi' } },
   { period: { fr: '2023–2025', en: '2023–2025' }, title: { fr: 'Technicienne spécialisée en développement digital · OFPPT', en: 'Specialized Technician in Digital Development · OFPPT' }, detail: { fr: 'Oued Zem', en: 'Oued Zem' } },
   { period: { fr: '2022–2023', en: '2022–2023' }, title: { fr: 'Sciences de la vie · Faculté Polydisciplinaire', en: 'Life Sciences · Polydisciplinary Faculty' }, detail: { fr: 'Khouribga', en: 'Khouribga' } },
   { period: { fr: '2021–2022', en: '2021–2022' }, title: { fr: 'Baccalauréat en sciences physiques · Lycée Ibn Tofail', en: 'Baccalaureate in Physical Sciences · Ibn Tofail High School' }, detail: { fr: 'Oued Zem', en: 'Oued Zem' } }
