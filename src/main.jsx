@@ -123,8 +123,8 @@ function App() {
                         <div className="approach">
                             <span className="mini-label">{t.approach}</span>
                             <p>{t.approachBody}</p></div></motion.div>
-                            </div>
-                            </section>
+                </div>
+            </section>
             <section className="section skills-section" id="skills"><div className="container"><motion.div className="section-label" {...reveal}>{t.skillsNo}</motion.div><motion.h2 className="section-heading" {...reveal}>{t.skillsTitle}</motion.h2><div className="skill-grid">{skills[lang].map((group, i) => <motion.article className="skill-card" key={group.title} {...reveal} transition={{ duration: .55, delay: i * .06 }}><span className="skill-count">0{i + 1}</span><h3>{group.title}</h3><ul>{group.items.map(item => <li key={item}>{item}</li>)}</ul></motion.article>)}</div></div></section>
             <section className="section projects-section" id="projects">
                 <div className="container">
@@ -139,9 +139,52 @@ function App() {
                     <MarqueeRow items={projects.filter((_, index) => index % 2 === 1)} direction={1} paused={projectsPaused} lang={lang} t={t} />
                 </div>
             </section>
-            <section className="section journey-section" id="experience"><div className="container"><motion.div className="section-label" {...reveal}>{t.timelineNo}</motion.div><motion.h2 className="section-heading" {...reveal}>{t.timelineTitle}</motion.h2><div className="timeline">{timeline.map((item, i) => <motion.article className="timeline-item" key={i} {...reveal}><span className="timeline-dot" /><span className="timeline-period">{item.period[lang]}</span><div><h3>{item.title[lang]}</h3><p>{item.detail[lang]}</p></div></motion.article>)}</div></div></section>
-            <section className="section container contact-section" id="contact"><div className="contact-intro"><motion.div className="section-label" {...reveal}>{t.contactNo}</motion.div><motion.h2 {...reveal}>{t.contactTitle}</motion.h2><motion.p {...reveal}>{t.contactIntro}</motion.p><motion.div className="social-links" {...reveal}><a href="mailto:fatimaezzahrabel777@gmail.com"><Mail size={16} />{t.mailto}<ArrowUpRight size={14} /></a><a href="https://wa.me/212633697284" target="_blank" rel="noreferrer"><MessageCircle size={16} />WhatsApp<ArrowUpRight size={14} /></a><a href="https://www.linkedin.com/in/fatimaezzahra-belissaoui-a64668367" target="_blank" rel="noreferrer"><Linkedin size={16} />{t.linkedin}<ArrowUpRight size={14} /></a><a href="https://github.com/fatimaezzahra777" target="_blank" rel="noreferrer"><Github size={16} />{t.githubLink}<ArrowUpRight size={14} /></a></motion.div></div><motion.form className="contact-form" onSubmit={submit} {...reveal}><div className="form-row"><label>{t.name}<input name="name" autoComplete="name" /></label><label>{t.email}<input type="email" name="email" autoComplete="email" /></label></div><label>{t.subject}<input name="subject" /></label><label>{t.message}<textarea name="message" rows="4" /></label><p className="form-note">{t.formNote}</p>{error && <p className="form-feedback error" role="alert">{t.required}</p>}{sent && <p className="form-feedback" role="status">{t.sent}</p>}<button className="button button-dark submit-button" type="submit">{t.send}<ArrowUpRight size={16} /></button></motion.form></section>
-        </main><footer className="footer"><div className="container footer-inner"><a className="brand" href="#home"><span className="brand-mark">F<span>.</span></span><span className="brand-name">Fatima Ezzahra<br /><small>Belissaoui</small></span></a><span>© {new Date().getFullYear()} Fatima Ezzahra Belissaoui</span><span>{t.footer}</span><a className="back-top" href="#home" aria-label="Back to top"><ArrowUpRight size={17} /></a></div></footer>
+            <section className="section journey-section" id="experience">
+                <div className="container"><motion.div className="section-label" {...reveal}>{t.timelineNo}</motion.div><motion.h2 className="section-heading" {...reveal}>{t.timelineTitle}</motion.h2>
+                    <div className="timeline">{timeline.map((item, i) => <motion.article className="timeline-item" key={i} {...reveal}>
+                        <span className="timeline-dot" />
+                        <span className="timeline-period">{item.period[lang]}</span>
+                        <div><h3>{item.title[lang]}</h3>
+                            <p>{item.detail[lang]}</p>
+                        </div></motion.article>)}</div>
+                </div>
+            </section>
+            <section className="section container contact-section" id="contact">
+                <div className="contact-intro"><motion.div className="section-label" {...reveal}>{t.contactNo}</motion.div><motion.h2 {...reveal}>{t.contactTitle}</motion.h2><motion.p {...reveal}>{t.contactIntro}</motion.p><motion.div className="social-links" {...reveal}>
+                    <a href="mailto:fatimaezzahrabel777@gmail.com"><Mail size={16} />{t.mailto}<ArrowUpRight size={14} /></a>
+                    <a href="https://www.linkedin.com/in/fatimaezzahra-belissaoui-a64668367" target="_blank" rel="noreferrer"><Linkedin size={16} />{t.linkedin}<ArrowUpRight size={14} /></a>
+                    <a href="https://github.com/fatimaezzahra777" target="_blank" rel="noreferrer"><Github size={16} />{t.githubLink}<ArrowUpRight size={14} /></a></motion.div>
+                </div><motion.form className="contact-form" onSubmit={submit} {...reveal}>
+                    <div className="form-row">
+                        <label>{t.name}
+                            <input name="name" autoComplete="name" />
+                        </label>
+                        <label>{t.email}
+                            <input type="email" name="email" autoComplete="email" />
+                        </label></div><label>{t.subject}<input name="subject" />
+                    </label><label>{t.message}<textarea name="message" rows="4" />
+                    </label><p className="form-note">{t.formNote}</p>{error &&
+                        <p className="form-feedback error" role="alert">{t.required}</p>}{sent && <p className="form-feedback" role="status">{t.sent}</p>}<button className="button button-dark submit-button" type="submit">
+                        {t.send}<ArrowUpRight size={16} />
+                    </button></motion.form>
+            </section>
+        </main>
+        <footer className="footer">
+            <div className="container footer-inner">
+                <a className="brand" href="#home">
+                    <span className="brand-mark">
+                        F
+                        <span>.</span>
+                    </span>
+                    <span className="brand-name">
+                        Fatima Ezzahra
+                        <br />
+                        <small>Belissaoui</small>
+                    </span></a><span>© {new Date().getFullYear()} Fatima Ezzahra Belissaoui</span>
+                <span>{t.footer}</span>
+                <a className="back-top" href="#home" aria-label="Back to top"><ArrowUpRight size={17} /></a>
+            </div>
+        </footer>
     </div>
 }
 createRoot(document.getElementById('root')).render(<React.StrictMode><App /></React.StrictMode>);
